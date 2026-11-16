@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agende sua sessão de remoção a laser | Studio Bartô</title>
+<style>
+:root{--green:#5f725a;--gray:#334238;--brown:#9a4729;--dark:#252622;--card:#2d2f2a;--light:#f1efe8;--muted:#a9ada2;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Gotham","Montserrat","Helvetica Neue",Arial,sans-serif;background:radial-gradient(ellipse at 85% 0,rgba(95,114,90,.35),transparent 50%),var(--dark);color:var(--light);line-height:1.5;min-height:100vh}
+h1,h2{font-family:"Superior Title","Playfair Display",Georgia,serif;font-weight:700;line-height:1.15}
+button,input{font-family:inherit}
+.wrap{max-width:620px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:"Superior Title",Georgia,serif;font-size:20px;letter-spacing:.12em}
+.logo img{height:32px;display:block}
+.intro{padding:34px 0 22px}
+.intro h1{font-size:clamp(28px,6vw,40px)}
+.intro h1 em{font-style:normal;color:var(--brown)}
+.intro p{color:var(--muted);margin-top:8px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;margin-bottom:50px}
+.stepper{display:flex;gap:6px;margin-bottom:24px}
+.stepper div{flex:1;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.stepper div::before{content:"";display:block;height:4px;border-radius:4px;background:var(--line);margin-bottom:8px}
+.stepper div.on{color:var(--light)}.stepper div.on::before{background:var(--brown)}
+h2{font-size:24px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:14px}
+label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
+input{width:100%;background:var(--dark);border:1px solid var(--line);color:var(--light);border-radius:12px;padding:14px;font-size:15px}
+input:focus{outline:none;border-color:var(--green)}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.day{flex:0 0 66px;padding:10px 0;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--light);cursor:pointer;text-align:center}
+.day small{display:block;font-size:11px;color:var(--muted);text-transform:uppercase}
+.day b{font-size:20px;display:block}
+.day.sel{background:var(--brown);border-color:var(--brown)}.day.sel small{color:#fff}
+.day:disabled{opacity:.3;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slot{padding:12px 0;border-radius:10px;border:1px solid var(--line);cursor:pointer;font-size:14px;background:transparent;color:var(--light)}
+.slot.sel{background:var(--brown);border-color:var(--brown)}
+.slot:disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.left{font-size:13px;color:#ffb08f;margin-top:10px;min-height:18px}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;background:var(--brown);color:#fff;border:0;padding:17px;border-radius:14px;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-top:22px}
+.btn:hover{background:#b05532}
+.btn.wa{background:#25d366}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:14px;margin-top:14px;width:100%}
+.err{color:#ff9b7a;font-size:14px;min-height:20px;margin-top:12px}
+.hide{display:none!important}
+.done{background:rgba(95,114,90,.18);border:1px solid rgba(95,114,90,.5);border-radius:14px;padding:16px;margin:18px 0}
+.done div{display:flex;justify-content:space-between;padding:3px 0;font-size:14px}
+.done span{color:var(--muted)}
+.pix{display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center;margin-top:8px}
+.qr{width:190px;height:190px;background:#fff;border-radius:16px;display:grid;place-items:center;color:#333;font-size:13px;text-align:center;padding:12px}
+.qr img{width:100%;height:100%;object-fit:contain}
+.val{font-family:"Superior Title",Georgia,serif;font-size:32px;color:var(--brown)}
+.code{display:flex;gap:8px}
+.code input{font-size:12px}
+.code button{background:var(--green);color:#fff;border:0;border-radius:12px;padding:0 16px;font-weight:700;cursor:pointer}
+.timer{font-size:14px;margin-top:14px;color:#ffb08f}
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(--muted);text-align:center}
+@media(max-width:560px){.slots{grid-template-columns:repeat(3,1fr)}.pix{grid-template-columns:1fr;justify-items:center}.box{padding:20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <!-- Logo: <img src="assets/logo-barto.svg" alt="Studio Bartô"> -->
+ <div class="logo">STUDIO BARTÔ</div><small style="color:var(--muted)">Remoção a laser</small>
+</div></header>
+
+<div class="wrap">
+ <div class="intro">
+  <h1>Agende sua sessão de <em>remoção a laser</em></h1>
+  <p>Escolha o melhor dia e horário pra você.</p>
+ </div>
+
+ <div class="box" id="form">
+  <div class="stepper"><div class="on">Agendamento</div><div>Confirmação</div></div>
+
+  <!-- 1. AGENDAMENTO -->
+  <div class="st" data-s="1">
+   <h2>Escolha dia e horário</h2>
+   <label>Dia</label>
+   <div class="days" id="days"></div>
+   <label>Horário</label>
+   <div class="slots" id="slots"><small style="color:var(--muted);grid-column:1/-1">Selecione um dia.</small></div>
+   <div class="left" id="left"></div>
+   <label>Seu nome</label><input id="nome" autocomplete="name">
+   <label>WhatsApp</label><input id="tel" inputmode="tel" placeholder="(21) 99999-9999" autocomplete="tel">
+   <div class="err" id="err"></div>
+   <button class="btn" id="next">Agendar horário</button>
+  </div>
+
+  <!-- 2. PIX -->
+  <div class="st hide" data-s="2">
+   <h2>Horário pré-agendado ✓</h2>
+   <p class="sub">Falta só um passo: o sinal via PIX garante que esse horário fique reservado pra você. Ele é descontado do valor da sessão.</p>
+   <div class="done" id="resumo"></div>
+   <div class="pix">
+    <div class="qr">
+     <!-- PLACEHOLDER QR CODE PIX → assets/qr-pix.png -->
+     <img src="assets/qr-pix.png" alt="QR Code PIX" onerror="this.outerHTML='<b>QR CODE PIX</b><br><small>placeholder<br>assets/qr-pix.png</small>'">
+    </div>
+    <div style="width:100%">
+     <span class="sub">Valor do sinal</span>
+     <div class="val" id="val"></div>
+     <label style="margin-top:10px">PIX copia e cola</label>
+     <div class="code"><input id="pixcode" readonly><button id="copy">Copiar</button></div>
+    </div>
+   </div>
+   <div class="timer" id="timer"></div>
+   <a class="btn wa" id="btnWa" target="_blank" rel="noopener">✓ Já paguei, enviar comprovante</a>
+   <button class="link" id="back">Trocar dia ou horário</button>
+  </div>
+ </div>
+</div>
+
+<footer>STUDIO BARTÔ · Tatuagem · Laser · Barbearia</footer>
+
+<script>
+/* ===== CONFIG — EDITE AQUI ===== */
+const CONFIG={
+ whatsapp:"5521999999999",
+ valorSinal:50,
+ pixCopiaCola:"00020126...PLACEHOLDER-PIX-COPIA-E-COLA",
+ horarios:["10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00"],
+ diasFechados:[0],     // 0=dom
+ diasAFrente:14,
+ minutosReserva:30,
+ webhook:""            // opcional: URL n8n (POST JSON)
+};
+/* ================================ */
+const D={};const $=s=>document.querySelector(s);
+const brl=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const sem=["dom","seg","ter","qua","qui","sex","sáb"];
+
+const days=$("#days");
+for(let i=1;i<=CONFIG.diasAFrente;i++){
+ const d=new Date();d.setDate(d.getDate()+i);
+ const iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+ const b=document.createElement("button");b.className="day";
+ b.innerHTML=`<small>${sem[d.getDay()]}</small><b>${d.getDate()}</b><small>${d.toLocaleString("pt-BR",{month:"short"}).replace(".","")}</small>`;
+ b.disabled=CONFIG.diasFechados.includes(d.getDay());
+ b.onclick=()=>{days.querySelectorAll(".day").forEach(x=>x.classList.remove("sel"));b.classList.add("sel");D.data=iso;D.hora=null;slots()};
+ days.appendChild(b);
+}
+function slots(){
+ const box=$("#slots");box.innerHTML="";
+ const seed=[...D.data].reduce((a,c)=>a+c.charCodeAt(0),0);let free=0;
+ CONFIG.horarios.forEach((h,i)=>{
+  const b=document.createElement("button");b.className="slot";b.textContent=h;
+  b.disabled=(seed+i*7)%4===0; // MVP: ocupados simulados
+  if(!b.disabled)free++;
+  b.onclick=()=>{box.querySelectorAll(".slot").forEach(s=>s.classList.remove("sel"));b.classList.add("sel");D.hora=h};
+  box.appendChild(b);
+ });
+ $("#left").textContent=free<=4?`🔥 Restam só ${free} horários neste dia`:"";
+}
+$("#tel").addEventListener("input",e=>{let v=e.target.value.replace(/\D/g,"").slice(0,11);
+ e.target.value=v.length>6?`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`:v.length>2?`(${v.slice(0,2)}) ${v.slice(2)}`:v});
+
+function go(s){
+ document.querySelectorAll(".st").forEach(x=>x.classList.toggle("hide",+x.dataset.s!==s));
+ document.querySelectorAll(".stepper div").forEach((p,i)=>p.classList.toggle("on",i<s));
+ $("#form").scrollIntoView({behavior:"smooth"});
+}
+$("#next").onclick=()=>{
+ D.nome=$("#nome").value.trim();D.tel=$("#tel").value.trim();
+ const e=!D.data?"Escolha um dia.":!D.hora?"Escolha um horário.":D.nome.length<3?"Informe seu nome.":D.tel.replace(/\D/g,"").length<10?"Informe um WhatsApp válido.":"";
+ $("#err").textContent=e;if(e)return;
+ const dataBR=D.data.split("-").reverse().join("/");
+ D.protocolo="BRT"+Date.now().toString().slice(-6);
+ $("#resumo").innerHTML=[["Protocolo",D.protocolo],["Nome",D.nome],["Data",dataBR],["Horário",D.hora]].map(([a,b])=>`<div><span>${a}</span><b>${b}</b></div>`).join("");
+ $("#val").textContent=brl(CONFIG.valorSinal);
+ $("#pixcode").value=CONFIG.pixCopiaCola;
+ const msg=`Olá! Agendei minha *sessão de remoção a laser* pela página.\n\n*Protocolo:* ${D.protocolo}\n*Nome:* ${D.nome}\n*Data:* ${dataBR} às ${D.hora}\n\nSegue o comprovante do sinal de ${brl(CONFIG.valorSinal)}:`;
+ $("#btnWa").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+ if(CONFIG.webhook)fetch(CONFIG.webhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...D,sinal:CONFIG.valorSinal,status:"aguardando_sinal",criadoEm:new Date().toISOString()})}).catch(()=>{});
+ startTimer();go(2);
+};
+$("#back").onclick=()=>go(1);
+let tId;
+function startTimer(){clearTimeout(tId);let s=CONFIG.minutosReserva*60;
+ (function tick(){const m=String(Math.floor(s/60)).padStart(2,"0"),ss=String(s%60).padStart(2,"0");
+  $("#timer").innerHTML=s>0?`⏳ Seu horário fica segurado por <b>${m}:${ss}</b> até a confirmação do sinal.`:"Tempo esgotado. Chame a gente no WhatsApp para verificar se a vaga ainda está disponível.";
+  if(s-->0)tId=setTimeout(tick,1000)})();}
+$("#copy").onclick=e=>{const i=$("#pixcode");i.select();navigator.clipboard?.writeText(i.value);e.target.textContent="Copiado!";setTimeout(()=>e.target.textContent="Copiar",2000)};
+</script>
+</body>
+</html>
