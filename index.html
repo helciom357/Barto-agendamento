@@ -57,6 +57,20 @@ input:focus{outline:none;border-color:var(--green)}
 .code input{font-size:12px}
 .code button{background:var(--green);color:#fff;border:0;border-radius:12px;padding:0 16px;font-weight:700;cursor:pointer}
 .timer{font-size:14px;margin-top:14px;color:#ffb08f}
+.support{padding:10px 0 60px}
+.support .wrap{max-width:900px}
+.support h2{font-size:clamp(24px,4vw,32px);margin-bottom:22px}
+.ben{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:50px}
+.ben div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.ben b{display:block;margin-bottom:4px}
+.ben p{font-size:14px;color:var(--muted)}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--brown);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);font-size:15px}
+@media(max-width:760px){.ben{grid-template-columns:1fr}}
 footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(--muted);text-align:center}
 @media(max-width:560px){.slots{grid-template-columns:repeat(3,1fr)}.pix{grid-template-columns:1fr;justify-items:center}.box{padding:20px}}
 </style>
@@ -113,6 +127,30 @@ footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(
   </div>
  </div>
 </div>
+
+<section class="support">
+ <div class="wrap">
+  <h2>Por que remover com a Bartô</h2>
+  <div class="ben">
+   <div><b>Remoção ou clareamento</b><p>Apague de vez ou clareie pra um cover-up muito melhor.</p></div>
+   <div><b>Laser preciso</b><p>Quebra o pigmento em partículas que o corpo elimina, preservando a pele ao redor.</p></div>
+   <div><b>Sessões rápidas</b><p>Poucos minutos por sessão. Dá pra encaixar no almoço.</p></div>
+   <div><b>Plano sob medida</b><p>Sessões definidas pela cor, tamanho, profundidade e tipo de pele.</p></div>
+   <div><b>Acompanhamento</b><p>Orientações pós-sessão e avaliação da evolução a cada etapa.</p></div>
+   <div><b>Cover-up na casa</b><p>Depois de clarear, faça a nova tattoo no próprio estúdio.</p></div>
+  </div>
+
+  <h2>Ainda em dúvida?</h2>
+  <details><summary>Dói muito?</summary><p>A sensação lembra a de fazer a tatuagem, só que bem mais rápida. Usamos resfriamento e ajustamos a potência conforme a sua tolerância.</p></details>
+  <details><summary>Vai deixar cicatriz?</summary><p>Com o protocolo certo e os cuidados pós-sessão, o risco é baixo. A avaliação define a intensidade adequada pra sua pele.</p></details>
+  <details><summary>É caro?</summary><p>Você paga por sessão, sem pacote obrigatório. E o sinal não é custo extra: ele é abatido no dia.</p></details>
+  <details><summary>Minha tattoo é colorida ou grande. Funciona?</summary><p>Cada cor e tamanho responde de um jeito, e a gente te fala com honestidade o que esperar já na avaliação. Pra cover-up, muitas vezes só clarear já resolve.</p></details>
+  <details><summary>Quantas sessões vou precisar?</summary><p>Depende da tatuagem e da sua pele. A estimativa sai na avaliação, e as sessões são espaçadas por algumas semanas.</p></details>
+  <details><summary>Por que pagar sinal antes?</summary><p>A agenda de laser é enxuta. O sinal garante que o horário é seu e evita faltas que tiram a vaga de outra pessoa.</p></details>
+  <details><summary>Quem não pode fazer?</summary><p>Gestantes, pele bronzeada recentemente ou algumas condições de pele/saúde precisam de avaliação específica. Fale com a gente no WhatsApp antes.</p></details>
+  <div style="max-width:380px;margin:34px auto 0"><a href="#form" class="btn">Reservar meu horário</a></div>
+ </div>
+</section>
 
 <footer>STUDIO BARTÔ · Tatuagem · Laser · Barbearia</footer>
 
